@@ -1,0 +1,124 @@
+html,
+body {
+  min-height: 100vh;
+  /* font-size: 14px; */
+}
+
+/*
+ * Header
+ */
+#header {
+  position: sticky;
+  top: 0;
+  /* left: 0; */
+  z-index: 1005;
+}
+
+/*
+ * Sidebar
+ */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1006; /* Behind the navbar */
+  /* transition: all 0.5s; */
+  .logo {
+    text-decoration: none;
+    * {
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+    span {
+      font-size: xx-small;
+    }
+  }
+
+  .navbar {
+    align-items: unset;
+  }
+}
+
+// #sidebar .logo * {
+//   text-transform: uppercase;
+//   font-weight: 900;
+// }
+
+// #sidebar .logo {
+//   text-decoration: none;
+// }
+
+// #sidebar .logo span {
+//   font-size: xx-small;
+// }
+
+// #sidebar .navbar {
+//   align-items: unset;
+// }
+
+#toggleBtnWrapper button:focus {
+  box-shadow: none;
+}
+
+#sidebar-sticky {
+  position: sticky;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  max-height: 80vh;
+}
+
+#sidebar-sticky .bi {
+  font-size: larger;
+}
+
+#sidebar-sticky .nav-link {
+  background-color: #fff;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #003cff;
+  border-radius: 8px;
+  &::after {
+    color: #003cff;
+  }
+}
+
+#sidebar-sticky .nav-link:hover,
+#sidebar-sticky .nav-link.active {
+  background-color: #e8e8ea;
+  color: #003cff;
+}
+
+#sidebar-sticky .nav-link:focus {
+  box-shadow: none;
+}
+
+#sidebar-sticky .collapse .nav-link:hover,
+#sidebar-sticky .collapse .nav-link.active {
+  background-color: #003cff;
+  color: #fff;
+}
+
+/* #sidebar-sticky .nav-link:hover .badge,
+#sidebar-sticky .nav-link.active .badge {
+  background-color: #003cff;
+  color: #fff;
+} */
+
+#sidebar-sticky .collapse .nav-link:hover .badge,
+#sidebar-sticky .collapse .nav-link.active .badge {
+  background-color: #fff;
+  color: #003cff;
+}
+
+#sidebar-sticky .badge {
+  background-color: #003cff;
+  color: #fff;
+}
+
+#logs-btn:focus {
+  box-shadow: none;
+}
+
+#sidebar-sticky .accordion-button.hidden::after {
+  display: contents;
+}
