@@ -2,6 +2,7 @@
 import useWells from '@/features/composables/useWells';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import WellSelect from '../selects/WellSelect.vue';
 
 const props = defineProps({
   exportRoute: String
@@ -40,6 +41,9 @@ const currentYear = ref(new Date().getFullYear());
         </div>
         <div class="modal-body">
           <div class="row">
+            <div class="col">
+              <WellSelect label-by="cadaster_number" required />
+            </div>
             <div class="col">
               <input
                 required

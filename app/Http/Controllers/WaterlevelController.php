@@ -161,7 +161,7 @@ class WaterlevelController extends Controller
       'well_id' => "required|integer",
     ]);
 
-    $data = Waterlevel::where('skvajina_id', $request->well_id)->whereBetween('year', [$request->year1, $request->year2])->orderby('year', 'desc')->get();
+    $data = Waterlevel::with('well')->where('skvajina_id', $request->well_id)->whereBetween('year', [$request->year1, $request->year2])->orderby('year', 'desc')->get();
     return Excel::download(new WaterlevelExport($data), 'Уровень_воды_за_' . $request->year1 . '_' . $request->year2 . '_' . Carbon::now() . '.xlsx');
   }
 

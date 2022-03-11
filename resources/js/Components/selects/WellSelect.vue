@@ -24,7 +24,6 @@ const wellError = inject('wellError');
     searchable
     class="p-1"
     v-model="selectedWell"
-    name="author_id"
     :options="wells"
     :label-by="labelBy"
     close-on-select

@@ -37,7 +37,7 @@
     @forelse ($data as $value)
     <tr>
       <td>{{ $value->year }}</td>
-      <td>{{ $value->skvajina ? $value->skvajina->cadaster_number : null }}</td>
+      <td>{{ $value->well ? $value->well->cadaster_number : null }}</td>
       <td>{{ $value->january }}</td>
       <td>{{ $value->february }}</td>
       <td>{{ $value->march }}</td>

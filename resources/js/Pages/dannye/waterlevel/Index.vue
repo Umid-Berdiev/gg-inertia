@@ -13,11 +13,10 @@ import SearchForm from "../SearchForm.vue";
 import { useI18n } from "vue-i18n";
 import "vue-toastification/dist/index.css";
 import Chart from 'chart.js/auto'
-import { eachRight, map } from "lodash";
 
+const { t } = useI18n();
 const { getSelectedWell, setSelectedWell } = useWells();
 const { getSelectedYear, setSelectedYear } = useYear();
-
 const props = defineProps({
   wells: Array,
   item: Object,
@@ -26,14 +25,12 @@ const props = defineProps({
 const wellError = ref("");
 const myChart = ref(null);
 const toast = useToast();
-// const showToast = () => toast.success("I'm a toast!");
-const { t } = useI18n();
+const params = route().params;
+
 provide('wells', props.wells);
 provide('wellError', wellError.value);
 
 onMounted(async () => {
-  const params = route().params;
-
   if (params.well_id) {
     const selectedWellFromQuery = props.wells.find(well => well.id === Number(params.well_id))
     await setSelectedWell(selectedWellFromQuery)

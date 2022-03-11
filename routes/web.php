@@ -186,7 +186,7 @@ Route::middleware(['auth', 'verified', 'checkSessionActivity'])->group(function 
     Route::post('chemical-composition/store', [ChemicalCompositionController::class, 'store'])->name('chemical-composition.store');
     Route::post('chemical-composition/import', [ChemicalCompositionController::class, 'import'])->name('chemical-composition.import');
     Route::get('chemical-composition/template', [ChemicalCompositionController::class, 'exportTemplate'])->name('chemical-composition.template');
-    Route::post('chemical-composition/export', [ChemicalCompositionController::class, 'exportData'])->name('chemical-composition.export');
+    Route::get('chemical-composition/export', [ChemicalCompositionController::class, 'exportData'])->name('chemical-composition.export');
     Route::post('chemical-composition/accept', [ChemicalCompositionController::class, 'accept'])->name('chemical-composition.accept');
     Route::post(
       'chemical-composition/{chemical-composition}',

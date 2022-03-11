@@ -419,7 +419,7 @@
           </button>
           <button
             type="button"
-            class="btn btn-success btn-sm rounded-lg px-5"
+            class="btn btn-success text-white rounded-lg px-5"
             data-bs-dismiss="modal"
             @click="changeDiagrammaData"
           >{{ $t('messages.Показать график') }}</button>

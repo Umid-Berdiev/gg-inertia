@@ -91,7 +91,7 @@
           <div class="modal-footer">
             <button
               type="submit"
-              class="btn btn-success"
+              class="btn btn-success text-white"
             >{{ $t("messages.Выполнить") }}</button>
             <button
               type="button"
@@ -99,7 +99,7 @@
               data-bs-dismiss="modal"
             >
               {{
-                $t("messages.Close")
+              $t("messages.Close")
               }}
             </button>
           </div>

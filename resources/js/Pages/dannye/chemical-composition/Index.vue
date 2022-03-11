@@ -4,10 +4,12 @@ import { Inertia } from "@inertiajs/inertia";
 import isEmpty from "lodash/isEmpty"
 import useYear from '@/features/composables/useYear.js'
 import useWells from '@/features/composables/useWells.js'
-
 import ImportModal from "@/Components/modals/ImportModal.vue";
 import SearchForm from "../SearchForm.vue";
+import ExportModal from "../../../Components/modals/ExportModal.vue";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n();
 const { getSelectedWell, setSelectedWell } = useWells();
 const { getSelectedYear, setSelectedYear } = useYear();
 const props = defineProps({
@@ -65,20 +67,22 @@ function getQuarter(month) {
   }
 }
 
-function handleUpdateAction(event) {
+function handleUpdate(event) {
   const values = Object.fromEntries(new FormData(event.target));
-  // console.log('values in handle update func: ', values);
-  Inertia.post(route('chemical-composition.update', props.item.id),
-    { ...values },
-    {
-      onSuccess: page => {
-        toast.success(t("messages.successfully_updated"), {
-          timeout: 3000
-        });
-      }
-    }
-  )
+  console.log('values in handle update func: ', { ...values, well_id: getSelectedWell.value.id, year: getSelectedYear.value });
+  // Inertia.post(route('chemical-composition.update'),
+  //   { ...values, well_id: getSelectedWell.value.id, year: getSelectedYear.value },
+  //   {
+  //     onSuccess: page => {
+  //       toast.success(t("messages.successfully_updated"), {
+  //         timeout: 3000
+  //       });
+  //       getObjDataForYearlyChart();
+  //     }
+  //   }
+  // )
 }
+
 </script>
 
 <template>
@@ -87,7 +91,7 @@ function handleUpdateAction(event) {
       <div class="col-sm-auto">
         <h5
           class="ml-3 mb-3 font-weight-bold text-primary"
-        >{{ $t("messages.dynamic_changes_water_level") }}</h5>
+        >{{ t("messages.dynamic_changes_water_level") }}</h5>
       </div>
     </div>
     <div class="row justify-content-between" v-if="!isEmpty(items)">
@@ -112,7 +116,7 @@ function handleUpdateAction(event) {
           class="btn btn-primary"
         >
           <i class="bi bi-upload"></i>
-          {{ $t('messages.Импорт') }}
+          {{ t('messages.Импорт') }}
         </button>
 
         <button
@@ -121,7 +125,7 @@ function handleUpdateAction(event) {
           class="btn btn-primary ms-3"
         >
           <i class="bi bi-download"></i>
-          {{ $t('Экспорт') }}
+          {{ t('Экспорт') }}
         </button>
       </div>
     </div>
@@ -134,16 +138,16 @@ function handleUpdateAction(event) {
           >
             <button type="submit" class="btn btn-primary">
               <i class="bi bi-check2-all fa-lg"></i>
-              {{ $t('messages.Одобрить') }}
+              {{ t('messages.Одобрить') }}
             </button>
           </form>
         </div>
         <div class="col-md-auto">
           <button
-            class="btn btn-success"
+            class="btn btn-success text-white"
             type="submit"
             form="update-form"
-          >{{ $t('messages.Сохранитьизменения') }}</button>
+          >{{ t('messages.Сохранитьизменения') }}</button>
         </div>
       </div>
 
@@ -152,10 +156,10 @@ function handleUpdateAction(event) {
           <table class="table table-sm table-bordered mt-3">
             <thead>
               <tr class="text-center">
-                <th>{{ $t('messages.Хим.состав') }}</th>
-                <th>{{ $t('messages.Жесткость') }}</th>
+                <th>{{ t('messages.Хим.состав') }}</th>
+                <th>{{ t('messages.Жесткость') }}</th>
                 <th>рН</th>
-                <th>{{ $t('messages.Сухой остаток') }}</th>
+                <th>{{ t('messages.Сухой остаток') }}</th>
                 <th>
                   CO
                   <sub>2</sub>
@@ -206,15 +210,15 @@ function handleUpdateAction(event) {
                   NH
                   <sub>4</sub>
                 </th>
-                <th>{{ $t('messages.Окисляемость') }}</th>
-                <th>F - {{ $t('messages.фтор') }}</th>
+                <th>{{ t('messages.Окисляемость') }}</th>
+                <th>F - {{ t('messages.фтор') }}</th>
               </tr>
               <tr class="text-center">
-                <th>{{ $t('messages.По ГОСТу') }}</th>
-                <th>1,00 - 200,00 {{ $t('messages.мг-экв/л') }} (10,0)</th>
+                <th>{{ t('messages.По ГОСТу') }}</th>
+                <th>1,00 - 200,00 {{ t('messages.мг-экв/л') }} (10,0)</th>
                 <th>2-12</th>
                 <th>
-                  0,10 - 300 {{ $t('messages.мг/л') }}
+                  0,10 - 300 {{ t('messages.мг/л') }}
                   <br />(1500)
                 </th>
                 <th></th>
@@ -224,18 +228,18 @@ function handleUpdateAction(event) {
                 <th></th>
                 <th>250-350</th>
                 <th>400-500</th>
-                <th>45 {{ $t('messages.мг/л') }}</th>
-                <th>3 {{ $t('messages.мг/л') }}</th>
+                <th>45 {{ t('messages.мг/л') }}</th>
+                <th>3 {{ t('messages.мг/л') }}</th>
                 <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>0,3 {{ $t('messages.мг/л') }}</th>
-                <th>0,3 {{ $t('messages.мг/л') }}</th>
-                <th>1 {{ $t('messages.мг/л') }}</th>
+                <th>0,3 {{ t('messages.мг/л') }}</th>
+                <th>0,3 {{ t('messages.мг/л') }}</th>
+                <th>1 {{ t('messages.мг/л') }}</th>
                 <th></th>
-                <th>0,70 {{ $t('messages.мг/л') }}</th>
+                <th>0,70 {{ t('messages.мг/л') }}</th>
               </tr>
             </thead>
             <tbody>

@@ -59,7 +59,7 @@ function handleSubmit(event) {
         <div class="modal-footer justify-content-center">
           <a
             v-if="templateUrl"
-            class="btn btn-success"
+            class="btn btn-success text-white"
             :href="route(templateUrl)"
           >
             <i class="bi bi-download"></i>
